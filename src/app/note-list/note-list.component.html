@@ -134,8 +134,14 @@
     </div>
     <div>
         
-        @for (note of noteList; track note) {
+        @for (item of (this.noteService.notes$ | async); track item) {
+            <li>
+                {{ item['title'] }}
+            </li>
+        }
+
+       <!--  @for (note of noteList; track note) {
             <app-note [note]="note"></app-note>
-          }
+          } -->
     </div>
 </div>

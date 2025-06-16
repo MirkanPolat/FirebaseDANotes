@@ -12,10 +12,12 @@ export class NoteListService {
   normalNotes: Note[] = [];
   
   notes$;
-  firestore: Firestore = inject(Firestore);
-
-  unsubList; 
+  notes;
+  
+  unsubList;
   unsubSingle;
+
+  firestore: Firestore = inject(Firestore);
 
   constructor() {
     this.unsubList = onSnapshot(this.getNotesRef(), (list) => {
@@ -31,7 +33,7 @@ export class NoteListService {
     this.unsubList();
 
     this.notes$ = collectionData(this.getNotesRef());
-    this.notes$ = this.notes$.subscribe( (list) => {
+    this.notes = this.notes$.subscribe( (list) => {
       list.forEach(element => {
         console.log(element);
       });
